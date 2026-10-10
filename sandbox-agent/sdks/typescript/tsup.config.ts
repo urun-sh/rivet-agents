@@ -5,6 +5,7 @@ export default defineConfig({
     "src/index.ts",
     "src/providers/local.ts",
     "src/providers/e2b.ts",
+    "src/providers/urun.ts",
     "src/providers/daytona.ts",
     "src/providers/agentcomputer.ts",
     "src/providers/docker.ts",

@@ -54,6 +54,10 @@
     "./sprites": {
       "types": "./dist/providers/sprites.d.ts",
       "import": "./dist/providers/sprites.js"
+    },
+    "./urun": {
+      "types": "./dist/providers/urun.d.ts",
+      "import": "./dist/providers/urun.js"
     }
   },
   "peerDependencies": {

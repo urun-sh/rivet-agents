@@ -11,6 +11,7 @@ import { InMemorySessionPersistDriver, SandboxAgent, type SandboxProvider } from
 import { local } from "../src/providers/local.ts";
 import { docker } from "../src/providers/docker.ts";
 import { e2b } from "../src/providers/e2b.ts";
+import { urun } from "../src/providers/urun.ts";
 import { daytona } from "../src/providers/daytona.ts";
 import { agentcomputer } from "../src/providers/agentcomputer.ts";
 import { vercel } from "../src/providers/vercel.ts";
@@ -188,6 +189,25 @@ function buildProviders(): ProviderEntry[] {
       sessionTestsEnabled: true,
       createProvider() {
         return e2b({
+          create: { envs: collectApiKeys() },
+        });
+      },
+    });
+  }
+
+  // --- urun (urun's E2B-compatible wire; sandbox.urun.sh) ---
+  {
+    entries.push({
+      name: "urun",
+      skipReasons: [...missingEnvVars("E2B_API_KEY", "E2B_DOMAIN"), ...missingModules("@e2b/code-interpreter")],
+      agent: "claude",
+      startTimeoutMs: 300_000,
+      canVerifyDestroyedSandbox: false,
+      sessionSkipReasons: missingEnvVars("ANTHROPIC_API_KEY"),
+      sessionCwd: "/home/user",
+      sessionTestsEnabled: true,
+      createProvider() {
+        return urun({
           create: { envs: collectApiKeys() },
         });
       },
