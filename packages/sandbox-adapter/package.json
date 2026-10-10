@@ -47,6 +47,10 @@
 		"./pi": {
 			"types": "./dist/pi/index.d.ts",
 			"default": "./dist/pi/index.js"
+		},
+		"./urun": {
+			"types": "./dist/urun.d.ts",
+			"default": "./dist/urun.js"
 		}
 	},
 	"main": "./dist/index.js",
